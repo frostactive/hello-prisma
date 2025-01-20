@@ -4,6 +4,7 @@ ENV NODE_ENV production
 
 USER node
 WORKDIR /home/node
+RUN apk add --no-cache openssl
 
 COPY package*.json ./
 RUN npm ci
@@ -21,6 +22,7 @@ ENV NODE_ENV production
 
 USER node
 WORKDIR /home/node
+RUN apk add --no-cache openssl
 
 COPY --from=builder --chown=node:node /home/node/package*.json ./
 COPY --from=builder --chown=node:node /home/node/node_modules/ ./node_modules/
